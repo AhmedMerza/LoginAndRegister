@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+      <title>My Project</title>
+  </head>
+  <body onload="enableEditMode();">
+    <div class="header">
+      {% if user.is_authenticated %}
+      <h1 class="logo"><a href>{{user.username}}</a></h1>
+      {% else %}
+      <h1 class="logo"><a href>{{User.user}}</a></h1>
+      {% endif %}
+
+      <ul class="menu">
+        <li><a href="#head" class="Home">Home</a></li>
+        <li><a href="#projects" class="Projects">Projects</a></li>
+        <li><a href="#contact" class="Contact">Contact</a></li>
+        <li><a href="#shop">Shop</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="accounts/logout">Logout</a></li>
+        {% else %}
+        <li><a href="accounts/register">Register</a></li>
+        <li><a href="accounts/login">Login</a></li>
+        {% endif %}
+      </ul>
+
+      <div class="hamburger">
+        <div class="bar"></div>
+      </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    
+    <section id="footer">
+        <div class="footer">
+  
+          {% if user.is_authenticated %}
+  
+          <h1 class="logo">{{user.username}}</h1>
+  
+          {% else %}
+  
+          <h1 class="logo">{{User.user}}</h1>
+          <a href= {{User.insta}} target="_blank"
+            ><img src="{% static './img/instagram-sketched.png' %}"
+          /></a>
+          {% endif %}
+  
+        </div>
+      </section>
+  
+      <script>
+        var saveProjectsbtn = document.querySelector('.saveProjectsbtn')
+        var richTextHTML ;
+        var project2HTML ;
+        var project3HTML ;
+  
+        saveProjectsbtn.addEventListener('click', function(){
+          richTextHTML = richTextField.document.body.innerHTML
+          project2HTML = project2.document.body.innerHTML
+          project3HTML = project3.document.body.innerHTML
+  
+          localStorage.setItem('text1', richTextHTML);
+          localStorage.setItem('text2', project2HTML);
+          localStorage.setItem('text3', project3HTML);
+        })
+  
+        function enableEditMode() {
+          richTextField.document.designMode = "on";
+          project2.document.designMode = "on";
+          project3.document.designMode = "on";
+        }
+  
+        function execCmd(command, arg) {
+          richTextField.document.execCommand(command, false, null);
+          project2.document.execCommand(command, false, null);
+          project3.document.execCommand(command, false, null);
+          richTextHTML = richTextField.document.body.innerHTML;
+          project2HTML = project2.document.body.innerHTML
+          project3HtML = project3.document.body.innerHTML
+        }
+  
+        function execCmdWithArg(command, arg) {       
+          richTextField.document.execCommand(command, false, arg);
+          project2.document.execCommand(command, false, arg);
+          project3.document.execCommand(command, false, arg);
+        }
+  
+        var text1 = localStorage.getItem('text1');
+        var text2 = localStorage.getItem('text2');
+        var text3 = localStorage.getItem('text3');
+  
+        var text = text1
+        if (text == null){
+          text = 'Write your project here.'
+          richTextField.document.body.innerHTML = text;
+          project2.document.body.innerHTML = text;
+          project3.document.body.innerHTML = text;
+        } else{
+          richTextField.document.body.innerHTML = text1;
+          project2.document.body.innerHTML = text2;
+          project3.document.body.innerHTML = text3;
+        }
+  
+      </script>
+  
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+      <script src="{% static 'app.js' %}"></script>
+    </body>
+  </html>

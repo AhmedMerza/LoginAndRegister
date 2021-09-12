@@ -1,0 +1,541 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>My Project</title>
+  </head>
+  <body onload="enableEditMode();">
+    <div class="header">
+      {% if user.is_authenticated %}
+      <h1 class="logo"><a href>{{user.username}}</a></h1>
+      {% else %}
+      <h1 class="logo"><a href>{{User.user}}</a></h1>
+      {% endif %}
+
+      <ul class="menu">
+        <li><a href="#head" class="Home">Home</a></li>
+        <li><a href="#projects" class="Projects">Projects</a></li>
+        <li><a href="#contact" class="Contact">Contact</a></li>
+        <li><a href="#shop">Shop</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="accounts/logout">Logout</a></li>
+        {% else %}
+        <li><a href="accounts/register">Register</a></li>
+        <li><a href="accounts/login">Login</a></li>
+        {% endif %}
+      </ul>
+
+      <div class="hamburger">
+        <div class="bar"></div>
+      </div>
+    </div> -->
+
+    {% block content %}
+
+    <section id="head">
+      
+
+      <div class="txt">
+        <h1 class="st">Hi there,<span></span></h1>
+        <h1 class="nd">My name is<span></span></h1>
+
+        {% if user.is_authenticated %}
+        <h1 class="lst">{{user.first_name}} {{user.last_name}}<span></span></h1></div>
+        {% else %}
+        <h1 class="lst">{{User.name}}<span></span></h1>
+      </div>
+      <div class="btn-top">
+        <a href={{User.github}} target="_blank">My github</a>
+      </div>
+        {% endif %}
+        
+     
+    </section>
+
+    <section id="projects">
+
+      <div class="projects">
+
+        <div class="head">
+          <h1>My <span>Projects</span></h1>
+          <p class="projectPa">
+            I have a wonderful teacher who give me the projects that I need to
+            improve and start up my career, Thank you very much T.Ali
+          </p>
+        </div>
+
+        {% for project in projects %}
+
+        <div class="project" draggable="true">
+          <img class="idea" src="{% static 'img/idea.png' %}" />
+          <h2 class="projectNum"> Project {{project.id}} </h2>
+          <p class="projectPa" contenteditable="true">{{project.p}}
+          </p>
+          <a class="removeProject">Remove</a>
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div class="contact-top">
+          <h1>Contact <span>me</span></h1>
+        </div>
+
+        <div class="all-contact">
+          <div class="contact-bottom">
+            <h2>Gmail</h2>
+            <img src="{% static 'img/email.png' %}" />
+
+            {% if user.is_authenticated %}
+            <h3> {{user.email}} </h3>
+            {% else %}
+            <h3> {{User.email}} </h3>
+            {% endif %}
+            
+          </div>
+          {% if user.is_authenticated %}
+
+            {% else %}
+          <div class="contact-bottom">
+            <h2>Instagram</h2>
+            <img src="{% static '/img/instagram-sketched.png' %}" />
+            <a href= {{User.insta}} target="_blank"
+              >{{User.user}}x</a
+            >
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </section>
+
+    <section class="image-change">
+      <h2 class="cattxt">Am I a cat ?</h2>
+      <img
+        src="https://www.recreoviral.com/wp-content/uploads/2018/06/mascotas-hermosas-9.jpg"
+        class="cat"
+        alt=""
+      />
+      <img
+        src="https://tse2.mm.bing.net/th?id=OIP.ByxtlcMyBRw-PsVdIQl_egHaFj&pid=Api&P=0&w=222&h=167"
+        class="lion"
+        alt=""
+      />
+      <h2 class="liontxt">Nah I'm a lion</h2>
+      <div class="image-change-footer"></div>
+    </section>
+
+    <!-- Shop -->
+
+    <div class="shopTop" id="shop">
+      <h1 class="shopLogo">Music shop</h1>
+    </div>
+    <section class="shop container content-section">
+      <h2 class="section-header">MUSIC</h2>
+      <div class="shop-items">
+        <div class="shop-item">
+          <span class="shop-item-title">Album 1</span>
+          <img class="shop-item-image" src="{% static 'img/Album 1.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$12.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="shop-item">
+          <span class="shop-item-title">Album 2</span>
+          <img class="shop-item-image" src="{% static 'img/Album 2.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$14.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="shop-item">
+          <span class="shop-item-title">Album 3</span>
+          <img class="shop-item-image" src="{% static 'img/Album 3.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$9.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="shop-item">
+          <span class="shop-item-title">Album 4</span>
+          <img class="shop-item-image" src="{% static 'img/Album 4.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$19.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="shop container content-section">
+      <h2 class="section-header">MERCH</h2>
+      <div class="shop-items">
+        <div class="shop-item">
+          <span class="shop-item-title">T-Shirt</span>
+          <img class="shop-item-image" src="{% static 'img/Shirt.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$19.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="shop-item">
+          <span class="shop-item-title">Coffee Cup</span>
+          <img class="shop-item-image" src="{% static 'img/Cofee.png' %}" />
+          <div class="shop-item-details">
+            <span class="shop-item-price">$6.99</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="shopCart container content-section">
+      <h2 class="section-header">CART</h2>
+      <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">$0</span>
+      </div>
+      <button class="btn btn-primary btn-purchase" type="button">
+        PURCHASE
+      </button>
+    </section>
+
+    <hr>
+
+    <!-- End of shop -->
+<!-- 
+    <section id="todoList">
+      <div class="list">
+        <h1>Items</h1>
+        <div class="listItem">
+          <h2 class="item" draggable="true">Study IT</h2>
+        </div>
+        <div class="listItem">
+          <h2 class="item" draggable="true">Learn English</h2>
+        </div>
+
+        <div class="listItem">
+          <h2 class="item" draggable="true">Take the rubbish out</h2>
+        </div>
+      </div>
+
+      <div class="list">
+        <h1>To do list</h1>
+        <div class="listItem"></div>
+        <div class="listItem"></div>
+        <div class="listItem"></div>
+      </div>
+    </section> -->
+
+    <section id="projects">
+      <div class="projects">
+        <div class="head">
+          <h1>Your <span>Projects</span></h1>
+        </div>
+
+        <div class="project userProject" draggable="true">
+          <img class="idea" src="{% static './img/idea.png' %}" />
+          <h2 class="projectNum">Project 1</h2>
+          <div class="editButtons">
+            <button onclick="execCmd('bold')">Bold</button>
+            <button onclick="execCmd('italic')">Italic</button>
+            <button onclick="execCmd('Underline')">Underline</button>
+            <button onclick="execCmd('JustifyLeft')">Justify Left</button>
+            <button onclick="execCmd('JustifyCenter')">Justify center</button>
+            <button onclick="execCmd('JustifyRight')">Justify right</button>
+            <button onclick="execCmd('Superscript')">Superscript</button>
+            <button onclick="execCmd('Subscript')">Subscript</button>
+            <button onclick="execCmd('Undo')">Undo</button>
+            <button onclick="execCmd('redo')">Redo</button>
+            <button onclick="execCmd('insertUnorderedList')">
+              Unorder list
+            </button>
+            <button onclick="execCmd('insertOrderedList')">order list</button>
+            <button onclick="execCmd('insertHorizontalRule')">
+              Insert a line
+            </button>
+            <select onchange="execCmdWithArg('fontName', this.value)">
+              <option value="Arial">Arial</option>
+              <option value="Comic Sans MS">Comic Sans MS</option>
+              <option value="Courier">Courier</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <select onchange="execCmdWithArg('formatBlock', this.value)">
+              <option value="H1">6</option>
+              <option value="H2">5</option>
+              <option value="H3">4</option>
+              <option value="H4">3</option>
+              <option value="H5">2</option>
+              <option value="H6">1</option>
+            </select>
+            <br>
+            Text Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('foreColor', this.value)"
+            />
+            Background Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('hiliteColor', this.value)"
+            />
+          </div>
+
+          <iframe name="richTextField" style="width: 85%; height: 85%;"> </iframe>
+          <a class="removeProject">Remove</a>
+        </div>
+
+        <div class="project userProject" draggable="true">
+          <img class="idea" src="{% static './img/idea.png' %}" />
+          <h2 class="projectNum">Project 2</h2>
+          <div class="editButtons">
+            <button onclick="execCmd('bold')">Bold</button>
+            <button onclick="execCmd('italic')">Italic</button>
+            <button onclick="execCmd('Underline')">Underline</button>
+            <button onclick="execCmd('JustifyLeft')">Justify Left</button>
+            <button onclick="execCmd('JustifyCenter')">Justify center</button>
+            <button onclick="execCmd('JustifyRight')">Justify right</button>
+            <button onclick="execCmd('Superscript')">Superscript</button>
+            <button onclick="execCmd('Subscript')">Subscript</button>
+            <button onclick="execCmd('Undo')">Undo</button>
+            <button onclick="execCmd('redo')">Redo</button>
+            <button onclick="execCmd('insertUnorderedList')">
+              Unorder list
+            </button>
+            <button onclick="execCmd('insertOrderedList')">order list</button>
+            <button onclick="execCmd('insertHorizontalRule')">
+              Insert a line
+            </button>
+            <select onchange="execCmdWithArg('fontName', this.value)">
+              <option value="Arial">Arial</option>
+              <option value="Comic Sans MS">Comic Sans MS</option>
+              <option value="Courier">Courier</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <select onchange="execCmdWithArg('formatBlock', this.value)">
+              <option value="H1">6</option>
+              <option value="H2">5</option>
+              <option value="H3">4</option>
+              <option value="H4">3</option>
+              <option value="H5">2</option>
+              <option value="H6">1</option>
+            </select>
+            <br>
+            Text Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('foreColor', this.value)"
+            />
+            Background Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('hiliteColor', this.value)"
+            />
+          </div>
+
+          <iframe name="project2" style="width: 85%; height: 85%;">
+          <P>GYUHGHGJHJHGJHGJH</P></iframe>
+          <a class="removeProject">Remove</a>
+        </div>
+
+        <div class="project userProject" draggable="true">
+          <img class="idea" src="{% static './img/idea.png'  %}" />
+          <h2 class="projectNum">Project 3</h2>
+          <div class="editButtons">
+            <button onclick="execCmd('bold')">Bold</button>
+            <button onclick="execCmd('italic')">Italic</button>
+            <button onclick="execCmd('Underline')">Underline</button>
+            <button onclick="execCmd('JustifyLeft')">Justify Left</button>
+            <button onclick="execCmd('JustifyCenter')">Justify center</button>
+            <button onclick="execCmd('JustifyRight')">Justify right</button>
+            <button onclick="execCmd('Superscript')">Superscript</button>
+            <button onclick="execCmd('Subscript')">Subscript</button>
+            <button onclick="execCmd('Undo')">Undo</button>
+            <button onclick="execCmd('redo')">Redo</button>
+            <button onclick="execCmd('insertUnorderedList')">
+              Unorder list
+            </button>
+            <button onclick="execCmd('insertOrderedList')">order list</button>
+            <button onclick="execCmd('insertHorizontalRule')">
+              Insert a line
+            </button>
+            <select onchange="execCmdWithArg('fontName', this.value)">
+              <option value="Arial">Arial</option>
+              <option value="Comic Sans MS">Comic Sans MS</option>
+              <option value="Courier">Courier</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <select onchange="execCmdWithArg('formatBlock', this.value)">
+              <option value="H1">6</option>
+              <option value="H2">5</option>
+              <option value="H3">4</option>
+              <option value="H4">3</option>
+              <option value="H5">2</option>
+              <option value="H6">1</option>
+            </select>
+            <br>
+            Text Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('foreColor', this.value)"
+            />
+            Background Color:
+            <input
+              type="color"
+              onchange="execCmdWithArg('hiliteColor', this.value)"
+            />
+          </div>
+
+          <iframe name="project3" class="a" style="width: 85%; height: 85%;"> </iframe>
+          <a class="removeProject">Remove</a>
+        </div>
+
+        <div class="saveProjects">
+          <input class="saveProjectsbtn btn-primary btn" type="submit" value="Save">
+        </div>
+    </section>
+
+    <!-- Sending Emails section -->
+    <section class="emailSection">
+
+      <div class="emailHead">
+        <h1>Get In Touch</h1>
+      </div>
+
+      <div class="container">
+        <form action="" id="test-form" method="POST">
+  
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+          </div>
+  
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName">
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email">
+          </div>
+  
+          <div class="form-group">
+            <label for="massage">Massage</label>
+            <textarea name="massage" id="massage" rows="10" maxlength="200"></textarea>
+          </div>
+  
+          <button type="submit" id="test-form-submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    {% endblock %}
+
+    <!-- End of Sending Emails section -->
+<!-- 
+    <section id="footer">
+      <div class="footer">
+
+        {% if user.is_authenticated %}
+
+        <h1 class="logo">{{user.username}}</h1>
+
+        {% else %}
+
+        <h1 class="logo">{{User.user}}</h1>
+        <a href= {{User.insta}} target="_blank"
+          ><img src="{% static './img/instagram-sketched.png' %}"
+        /></a>
+        {% endif %}
+
+      </div>
+    </section>
+
+    <script>
+      var saveProjectsbtn = document.querySelector('.saveProjectsbtn')
+      var richTextHTML ;
+      var project2HTML ;
+      var project3HTML ;
+
+      saveProjectsbtn.addEventListener('click', function(){
+        richTextHTML = richTextField.document.body.innerHTML
+        project2HTML = project2.document.body.innerHTML
+        project3HTML = project3.document.body.innerHTML
+
+        localStorage.setItem('text1', richTextHTML);
+        localStorage.setItem('text2', project2HTML);
+        localStorage.setItem('text3', project3HTML);
+      })
+
+      function enableEditMode() {
+        richTextField.document.designMode = "on";
+        project2.document.designMode = "on";
+        project3.document.designMode = "on";
+      }
+
+      function execCmd(command, arg) {
+        richTextField.document.execCommand(command, false, null);
+        project2.document.execCommand(command, false, null);
+        project3.document.execCommand(command, false, null);
+        richTextHTML = richTextField.document.body.innerHTML;
+        project2HTML = project2.document.body.innerHTML
+        project3HtML = project3.document.body.innerHTML
+      }
+
+      function execCmdWithArg(command, arg) {       
+        richTextField.document.execCommand(command, false, arg);
+        project2.document.execCommand(command, false, arg);
+        project3.document.execCommand(command, false, arg);
+      }
+
+      var text1 = localStorage.getItem('text1');
+      var text2 = localStorage.getItem('text2');
+      var text3 = localStorage.getItem('text3');
+
+      var text = text1
+      if (text == null){
+        text = 'Write your project here.'
+        richTextField.document.body.innerHTML = text;
+        project2.document.body.innerHTML = text;
+        project3.document.body.innerHTML = text;
+      } else{
+        richTextField.document.body.innerHTML = text1;
+        project2.document.body.innerHTML = text2;
+        project3.document.body.innerHTML = text3;
+      }
+
+    </script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="{% static 'app.js' %}"></script>
+  </body>
+</html> -->
